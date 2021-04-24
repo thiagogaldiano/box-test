@@ -59,7 +59,16 @@ class UserRepository implements UserInterface
 
         }
         
-    }    
+    }   
+    
+    public function editBalance(Request $request)
+    {
+        $user = $this->user->editBalance($request);
+
+        return response()->json([
+            'message' => 'Saldo inicial alterado com sucesso!',
+        ], 200);
+    }
 
 }
 ?>

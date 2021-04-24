@@ -25,6 +25,7 @@ Route::middleware('auth:api')->prefix('users')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('user.list');
     Route::get('/show/{id}', [UserController::class, 'show'])->name('user.show');
     Route::delete('/delete/{id}', [UserController::class, 'deleteUser'])->name('user.deleteUser');
+    Route::post('/editbalance', [UserController::class, 'editBalance'])->name('user.editBalance');
 });
 
 Route::middleware('auth:api')->prefix('movements')->group(function () {

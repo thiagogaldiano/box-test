@@ -13,7 +13,9 @@ interface UserInterface
 
     public function show(int $userId);
 
-    public function deleteUser(int $userId);       
+    public function deleteUser(int $userId);  
+    
+    public function editBalance(Request $request);
 
 }
 

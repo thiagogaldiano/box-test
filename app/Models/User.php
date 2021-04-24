@@ -68,5 +68,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Movement::class);
     }
+
+    public function editBalance($request)
+    {
+        
+        $user = $this->find($request->user_id);
+        $user->balance = $request->balance;
+        $result = $user->save();
+        
+        return $result;
+
+    }
     
 }

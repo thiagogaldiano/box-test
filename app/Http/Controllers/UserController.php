@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostUserRequest;
+use App\Http\Requests\PostEditBalanceRequest;
 
 use App\Interfaces\UserInterface;
 
@@ -37,5 +38,10 @@ class UserController extends Controller
     public function deleteUser($userId)
     {
         return $this->user->deleteUser($userId);
+    }
+
+    public function editBalance(PostEditBalanceRequest $request)
+    {
+        return $this->user->editBalance($request);
     }
 }

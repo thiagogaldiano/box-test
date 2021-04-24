@@ -1,0 +1,9 @@
+Nome,"Luiz Leite"
+E-mail,luiz2@gmail.com
+"Data de aniversário",1950-01-07
+"Saldo inicial",3000
+,
+type,value,created_at
+Débito,15,2021-04-24T03:41:17.000000Z
+Débito,15,2021-04-24T04:52:13.000000Z
+Crédito,150,2021-04-24T04:52:21.000000Z

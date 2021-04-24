@@ -42,7 +42,7 @@ class PostUserRequest extends FormRequest
         return [
             'email' => 'required|unique:users,email',
             'name' => 'required|max:150',
-            'birthday' => 'required|date_format:Y-m-d|before:today',       
+            'birthday' => 'required|date_format:Y-m-d|before:-18 years',       
             'password' => 'required|min:8',
             'password_confirmation' => 'required_with:password|same:password|min:8'
         ];
@@ -53,7 +53,9 @@ class PostUserRequest extends FormRequest
         return [
             'email.required' => 'Por favor, entre com e-mail do usuário!',
             'name.required' => 'Por favor, entre com o nome do usuário !',
-            'birthday' => 'Por favor, entre com a data de aniversário do usuário !',
+            'birthday.required' => 'Por favor, entre com a data de aniversário do usuário !',
+            'birthday.before' => 'O usuário precisa ter 18 anos para efetuar o cadastro !',
+            'birthday.date_format' => 'Entre com uma data válida!',
             'password.required' => 'Por favor, entre com a senha do usuário !'
         ];
     }

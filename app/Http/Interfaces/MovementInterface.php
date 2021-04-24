@@ -15,6 +15,8 @@ interface MovementInterface
 
     public function exportCsv(Request $request);
 
+    public function totalBalance(int $userId);
+
 }
 
 ?>

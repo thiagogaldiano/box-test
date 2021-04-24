@@ -1,6 +1,7 @@
 <?php
 namespace App\Traits;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 trait CsvTrait
 {
@@ -11,21 +12,27 @@ trait CsvTrait
     * @param string $fileName
     * @return mixed
     */
-    public function convertCsv(array $rows = [],$user_id)
+    public function convertCsv(array $rows = [],$user_id,$total_balance)
     {
         $path = public_path('movements/');
 
         $fileName = uniqid().'.csv';
         
+        $keys = array_keys($rows[0]);     
 
         $file = fopen($path.$fileName, 'w');
 
         if($user_id) {
-            fputcsv($file,array('Nome','Thiago'));
-            fputcsv($file,array('E-mail','thiagogaldiano@gmail.com'));
-            fputcsv($file,array('Data de aniversário','07/01/1986'));
+            $user = User::find($user_id);
+            fputcsv($file,array('Nome',$user->name));
+            fputcsv($file,array('E-mail',$user->email));
+            fputcsv($file,array('Data de aniversário',$user->birthday));
+            fputcsv($file,array('Saldo inicial',$user->balance));
+            fputcsv($file,array('Saldo atual',$total_balance));
             fputcsv($file,array('',''));
-        }
+        }    
+        
+        fputcsv($file,$keys);
 
         foreach ($rows as $row) {
             fputcsv($file, $row);

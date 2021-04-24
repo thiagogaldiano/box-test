@@ -41,4 +41,9 @@ class MovementController extends Controller
         return $this->movement->exportCsv($request);
     }
 
+    public function totalBalance($userId)
+    {
+        return $this->movement->totalBalance($userId);
+    }
+
 }

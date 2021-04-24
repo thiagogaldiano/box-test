@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Models\Movement;
 use App\Models\Report;
+use App\Models\User;
 use App\Interfaces\MovementInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +52,11 @@ class MovementRepository implements MovementInterface
     public function exportCsv(Request $request)
     {
         $movement = $this->movement;
+        if($request->user_id) {
+            $movement = $movement->select(array('movement_types.type', 'movements.value', 'movements.created_at'));
+        } else {
+            $movement = $movement->select(array('users.id','users.name','users.email', 'users.birthday', 'movement_types.type', 'movements.value', 'movements.created_at'));
+        }        
         $movement = $movement->join('users','users.id','=','movements.user_id');
         $movement = $movement->join('movement_types','movement_types.id','=','movements.movement_type_id');
         
@@ -69,7 +75,9 @@ class MovementRepository implements MovementInterface
 
         $movement = $movement->get();
 
-        $csv_report = $this->convertCsv($movement->toArray(),$request->user_id);
+        $total_balance = $this->totalBalance($request->user_id);
+
+        $csv_report = $this->convertCsv($movement->toArray(),$request->user_id,$total_balance);
 
         $report = new Report;
         $report->archive = $csv_report;
@@ -78,6 +86,28 @@ class MovementRepository implements MovementInterface
 
         return url('/movements/'.$csv_report);
 
+    }
+
+    public function totalBalance($userId)
+    {
+        $balance = User::find($userId)->balance;
+
+        $totalCredit = $this->movement
+                            ->where('user_id','=',$userId)
+                            ->where('movement_type_id','=',1)
+                            ->sum('value');
+
+        $totalDebit = $this->movement
+                           ->where('user_id','=',$userId)
+                           ->where('movement_type_id','=',2)
+                           ->sum('value');
+
+        $totalReversal = $this->movement
+                              ->where('user_id','=',$userId)
+                              ->where('movement_type_id','=',3)
+                              ->sum('value');
+
+        return $balance + $totalCredit - $totalDebit - $totalReversal;
     }
 
 }

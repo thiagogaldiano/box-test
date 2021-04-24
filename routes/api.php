@@ -33,6 +33,7 @@ Route::middleware('auth:api')->prefix('movements')->group(function () {
     Route::get('/{id}', [MovementController::class, 'listMovementUser'])->name('movement.listMovementUser');
     Route::get('/', [MovementController::class, 'index'])->name('movement.list');
     Route::post('/exportcsv', [MovementController::class, 'exportCsv'])->name('movement.exportCsv');
+    Route::get('/totalbalance/{id}', [MovementController::class, 'totalBalance'])->name('movement.totalBalance');
 });
 
 

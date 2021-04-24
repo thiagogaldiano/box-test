@@ -14,15 +14,9 @@ Caso não tenha instalado
 
     cd box-test
 
-Subir os containers do docker utilizando docker-compose
+Configurar .env
 
-    docker-compose up -d
-
-Executar o composer para fazer download das dependências
-
-    docker-compose exec app composer install
-
-    cp .env.example .env e faça as seguintes configurações:
+    cp .env.example .env
     
     DB_CONNECTION=mysql
     DB_HOST=db
@@ -30,6 +24,15 @@ Executar o composer para fazer download das dependências
     DB_DATABASE=box
     DB_USERNAME=box
     DB_PASSWORD=12345678
+
+Subir os containers do docker utilizando docker-compose
+
+    docker-compose up -d
+
+Executar o composer para fazer download das dependências
+
+    docker-compose exec app composer install
+    
 
 Gerar a chave:
 

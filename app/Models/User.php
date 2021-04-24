@@ -53,6 +53,7 @@ class User extends Authenticatable
         $this->email = $request->email;
         $this->name = $request->name;
         $this->birthday = $request->birthday;
+        $this->balance = $request->balance;
         $this->password = Hash::make($request->password);
         
         return $this->save();

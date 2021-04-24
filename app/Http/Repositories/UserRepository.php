@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use App\Models\Movement;
 use App\Interfaces\UserInterface;
 
 use Illuminate\Http\Request;
@@ -44,12 +45,22 @@ class UserRepository implements UserInterface
     {
 
         try {
-            
-            $del = $this->user->deleteUser($userId);;
+            $moviments = Movement::where('user_id',$userId)->count();
 
-            return response()->json([
-                'message' => 'Usuário excluído com sucesso!',
-            ], 200);
+            if($moviments > 0){
+
+                return response()->json([
+                    'message' => 'Este usuário não pode ser excluído por possuir movimentação!',
+                ], 400);
+
+            } else {
+
+                $del = $this->user->deleteUser($userId);
+                return response()->json([
+                    'message' => 'Usuário excluído com sucesso!',
+                ], 200);
+
+            }      
 
         } catch (\Throwable $th) {
 

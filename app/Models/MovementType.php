@@ -17,7 +17,7 @@ class MovementType extends Model
 
     public function movements()
     {
-        return $this->belongsToMany(Movements::class);
+        return $this->hasMany(Movement::class);
     }
 
 }

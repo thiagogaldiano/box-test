@@ -18,7 +18,11 @@ trait CsvTrait
 
         $fileName = uniqid().'.csv';
         
-        $keys = array_keys($rows[0]);     
+        if($rows){
+            $keys = array_keys($rows[0]);     
+        }else{
+            $keys = array();
+        }
 
         $file = fopen($path.$fileName, 'w');
 

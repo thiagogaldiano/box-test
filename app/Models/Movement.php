@@ -12,22 +12,25 @@ class Movement extends Model
     protected $table = 'movements';
 
     protected $fillable = [
-        'type'
+        'user_id',
+        'movement_type_id',
+        'movement_id',
+        'value'
     ];
 
-    public function movementType()
+    public function movement_type()
     {
-        return $this->hasOne(MovementType::class);
+        return $this->belongsTo(MovementType::class);
     }
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function movement()
     {
-        return $this->hasOne(Movement::class);
+        return $this->belongsTo(Movement::class);
     }
 
     public function register($request)

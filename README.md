@@ -12,11 +12,11 @@ Caso não tenha instalado
 
 ## Efetuar as seguintes intalações utilizando a docker
 
-cd box-test
+    cd box-test
 
 Subir os containers do docker utilizando docker-compose
 
-docker-compose up -d
+    docker-compose up -d
 
 Executar o composer para fazer download das dependências
 

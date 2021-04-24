@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Box User',
             'birthday' => '1986-07-01',            
             'password' => Hash::make('adminuser'),
+            'balance' => 0,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);

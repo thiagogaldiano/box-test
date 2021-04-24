@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function movements()
     {
-        return $this->belongsToMany(Movement::class);
+        return $this->hasMany(Movement::class);
     }
 
     public function editBalance($request)

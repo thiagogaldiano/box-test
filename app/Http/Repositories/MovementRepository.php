@@ -34,7 +34,7 @@ class MovementRepository implements MovementInterface
 
     public function listMovementUser($userId)
     {
-        return Movement::with(['users','movement_type'])
+        return Movement::with(['user','movement_type'])
                        ->where('user_id','=',$userId)
                        ->paginate(30);
         
@@ -42,7 +42,7 @@ class MovementRepository implements MovementInterface
 
     public function list()
     {
-        return Movement::with(['users','movement_type'])
+        return Movement::with(['user','movement_type'])
                        ->paginate(30);
     }
 

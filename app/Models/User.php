@@ -65,7 +65,7 @@ class User extends Authenticatable
         return $this->find($userId)->delete();
     }
 
-    public function movements()
+    public function movement()
     {
         return $this->hasMany(Movement::class);
     }

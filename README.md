@@ -25,6 +25,8 @@ Configurar .env
     DB_USERNAME=box
     DB_PASSWORD=12345678
 
+    QUEUE_DRIVER=database
+
 Subir os containers do docker utilizando docker-compose
 
     docker-compose up -d

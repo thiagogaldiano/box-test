@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Interfaces\UserInterface', 'App\Repositories\UserRepository');
         $this->app->bind('App\Interfaces\MovementInterface', 'App\Repositories\MovementRepository');
+        User::observe(UserObserver::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\User;
 use App\Models\Movement;
 use App\Interfaces\UserInterface;
+use App\Http\Resources\UserResource;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class UserRepository implements UserInterface
 {
     protected $user;
     protected $page;
-    
+
     public function __construct(User $user)
     {
         $this->user = $user;
@@ -29,16 +30,16 @@ class UserRepository implements UserInterface
             'message' => 'Usuário cadastrado com sucesso!',
         ], 200);
 
-    }   
-    
+    }
+
     public function list()
     {
-        return $this->user->paginate(30);
+        return UserResource::collection($this->user->paginate(30));
     }
 
     public function show($userId)
     {
-        return $this->user->find($userId);
+        return new UserResource($this->user->find($userId));
     }
 
     public function deleteUser($userId)
@@ -60,7 +61,7 @@ class UserRepository implements UserInterface
                     'message' => 'Usuário excluído com sucesso!',
                 ], 200);
 
-            }      
+            }
 
         } catch (\Throwable $th) {
 
@@ -69,9 +70,9 @@ class UserRepository implements UserInterface
             ], 500);
 
         }
-        
-    }   
-    
+
+    }
+
     public function editBalance(Request $request)
     {
         $user = $this->user->editBalance($request);

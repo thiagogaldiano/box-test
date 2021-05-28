@@ -25,6 +25,15 @@ Configurar .env
     DB_USERNAME=box
     DB_PASSWORD=12345678
 
+    MAIL_DRIVER=smtp
+    MAIL_HOST=smtp.mailtrap.io
+    MAIL_PORT=2525
+    MAIL_USERNAME=username_mailtrap
+    MAIL_PASSWORD=password_mailtrap
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS=thiagogaldiano@gmail.com
+    MAIL_FROM_NAME="${APP_NAME}"
+
     QUEUE_DRIVER=database
 
 Subir os containers do docker utilizando docker-compose

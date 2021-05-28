@@ -19,7 +19,8 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'birthday' => Carbon::parse($this->birthdate)->format('d/m/Y')
+            'birthday' => Carbon::parse($this->birthdate)->format('d/m/Y'),
+            'balance' => $this->balance
             ];
     }
 }

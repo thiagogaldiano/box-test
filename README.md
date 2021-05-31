@@ -68,6 +68,10 @@ Executar os seeders para popular algumas tabelas:
 
     docker-compose exec app php artisan queue:work
 
+## Comando para enviar e-mail para um usuário
+
+    docker-compose exec app php artisan mail:send 1
+
 ## Documentação das APIs
 
 Para acessar a documentação, clique [aqui](https://documenter.getpostman.com/view/4845658/TzJx9cMo)
